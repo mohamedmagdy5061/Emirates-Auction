@@ -150,7 +150,8 @@ class Home extends Component {
     checkedBoxScrap: false,
     value: { min: 0, max: 0 },
     language:true,
-    dir:"rtl"
+    dir:"rtl",
+    loading:false
   };
 
   componentDidMount() {
@@ -198,11 +199,13 @@ handelLanguage = () => {
 
 
   handelRefresh = () => {
-    window.location.reload();
-    // setTimeout(()=>{
-    //   // alert ("sdsfsdfsdds")
-    //   GetData().then(cars => this.setState({carsSource: cars}))
-    // },1000)
+    // window.location.reload();
+    setTimeout(()=>{
+      this.setState({carsSource: [], loading:true})
+      
+      setTimeout(()=> {GetData().then(cars => this.setState({carsSource: cars,loading:false}))},2500)
+      
+    },1000)
 }
 
 
@@ -394,11 +397,16 @@ handelLanguage = () => {
               clickedTime={this.handleSort.bind(this, "endDate")}
               changedName={this.handleFilterByName}
             />
-            <CardList
+            
+            {(this.state.loading)  ? <div id="preloader">
+                                      <div id="loader"></div>
+                                    </div> : <CardList
               show={this.state.show}
               carData={this.filterByName(nameFilter)}
               lang={(this.state.language)?"en":"ar"}
-            />
+              loading ={this.state.loading}
+            />  }
+            
           </section>
         </div>
       </div>
@@ -408,3 +416,5 @@ handelLanguage = () => {
 }
 
 export default Home;
+
+
