@@ -12,7 +12,6 @@ class TimeDown extends Component {
         
     setInterval(() => {
         this.setState(oldstate =>{ 
-            console.log(oldstate)
             return  { timer: this.oldsState(oldstate)-1}
         });
         }, 1000+(this.props.index*10));
@@ -20,7 +19,6 @@ class TimeDown extends Component {
     }
 
     oldsState = (oldValue)=>{
-        console.log(oldValue)
         let now = new Date().getTime();
         let stampDate = (oldValue.endDate * 1000)
             let timers = stampDate - now;
@@ -29,7 +27,7 @@ class TimeDown extends Component {
     
 
   render() {
-    return  moment(this.state.timer).format("HH:mm:ss"); //"LTS"
+    return  moment(this.state.timer).format("HH:mm:ss"); 
 
   }
 }

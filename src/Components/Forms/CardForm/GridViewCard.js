@@ -1,13 +1,10 @@
 import React from "react";
-// import moment from "moment";
 import TimeDown from "../../../Components/TimeCountDown/TimeDown";
 
 const cardFormStyle = {
   marginTop: "15px",
   color: "gray"
 };
-
-
 
 
 const GridViewCard = props => {
@@ -49,10 +46,7 @@ const GridViewCard = props => {
             </div>
             <div>
               <i className="fas fa-stopwatch" /> 
-              
               < TimeDown key={props.carID} index={props.index} endDate={props.AuctionInfo.endDate} />
-                  
-              {/* {moment(new Date(props.AuctionInfo.endDate)).format('LTS')} */}
           </div>
           </div>
         </div>

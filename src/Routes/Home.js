@@ -177,8 +177,6 @@ class Home extends Component {
   }
 
 
-
-
 handelLanguage = () => {
   const arabic = this.state.language;
   this.setState({ language : !arabic });
@@ -213,8 +211,6 @@ handelLanguage = () => {
   };
 
   sorting = (value1, value2) => {
-    console.log(value1, value2);
-    // console.log("from sorting Be", this.state.cars);
     const temp = (this.state.cars != "" ? this.state.cars : this.state.carsSource).sort((a, b) => {
       if (value2 === "undefined") {
         a = a[value1];
@@ -225,7 +221,6 @@ handelLanguage = () => {
       }
       return a < b ? -1 : a > b ? 1 : 0;
     });
-    console.log("from sorting Af", temp);
     return temp;
   };
 

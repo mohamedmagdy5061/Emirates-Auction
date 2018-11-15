@@ -6,7 +6,7 @@ const CardList = props => {
   return (
     <div className="row">
       {props.carData.map((card ,index) => (
-           (props.show) ? <GridViewCard index={index} lang={props.lang} key={card.carID} {...card} /> : < ListViewCard lang={props.lang} key={card.carID} {...card} />
+           (props.show) ? <GridViewCard index={index} lang={props.lang} key={card.carID} {...card} /> : < ListViewCard lang={props.lang} index={index} key={card.carID} {...card} />
       ))}
     </div>
   );
