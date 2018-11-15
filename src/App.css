@@ -1,4 +1,8 @@
-.App {
+body{
+  background-color: #eceef3; /* #f2f2f2 */
+
+}
+/* .App {
   text-align: center;
 }
 
@@ -29,4 +33,25 @@
   to {
     transform: rotate(360deg);
   }
+}
+ */
+
+.input-range__label--max .input-range__label-container{
+  display: none
+}
+.input-range__label--min .input-range__label-container{
+  display: none
+}
+.input-range__slider {
+  background:#fff !important  ;
+}
+
+.input-range__track--active {
+  background:#424242 !important ;
+}
+/* .input-range__track   input-range__track--background  {
+  background:red !important ;
+} */
+.input-range__track--background{
+  background:#2c6dc3 !important;
 }
