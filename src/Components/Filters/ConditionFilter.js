@@ -23,12 +23,12 @@ const ConditionFilter = props => (
         marginBottom: "20px"
       }}
     >
-      <button
+      {/* <button
         disabled
         style={{ color: "#3a3a3a", border: "none", background: "none" }}
       >
         FILTER
-      </button>
+      </button> */}
     </div>
 
     <div
@@ -40,6 +40,7 @@ const ConditionFilter = props => (
         marginBottom: "20px"
       }}
     >
+    <div style={{margin: "10% 8%"}}>
       <div className="custom-control custom-checkbox">
         <input
           type="checkbox"
@@ -55,7 +56,8 @@ const ConditionFilter = props => (
           htmlFor="new"
           style={{ marginBottom: "10px" }}
         >
-          New
+        {props.lang === "en" ?  "New" : "جديد"}
+         
         </label>
       </div>
       <div className="custom-control custom-checkbox">
@@ -73,7 +75,7 @@ const ConditionFilter = props => (
           htmlFor="used"
           style={{ marginBottom: "10px" }}
         >
-          Used
+          {props.lang === "en" ?  "Used" : "مستعمل"}
         </label>
       </div>
       <div className="custom-control custom-checkbox">
@@ -91,9 +93,11 @@ const ConditionFilter = props => (
           htmlFor="scrap"
           style={{ marginBottom: "10px" }}
         >
-          Scrap
-        </label>
+           {props.lang === "en" ? "Scrap" : "خردا"}
+        </label> 
       </div>
+        </div>
+
       <br />
 
       <span style={{ color: "#3a3a3a" }}>Make:</span>

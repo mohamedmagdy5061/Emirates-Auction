@@ -12,7 +12,7 @@ const GridViewCard = props => {
     <div className="col-lg-4 col-sm-6 portfolio-item  " style={cardFormStyle}>
       <div
         className="card h-100"
-        style={{ boxShadow: "0 5px 7px 0 rgba(0,0,0,.08)" }}
+        style={{ boxShadow: "0 5px 7px 0 rgba(0,0,0,.08)"}}
       >
         <img
           className="card-img-top"

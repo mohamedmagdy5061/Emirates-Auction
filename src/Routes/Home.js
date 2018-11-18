@@ -6,7 +6,9 @@ import InputRange from "react-input-range";
 import { GetData } from "../ApiServices/GetData";
 import "react-input-range/lib/css/index.css";
 import $ from "jquery";
+import EALogo from "../Assets/logooo.png"
 import Navbar from  "../Components/Navbar/Navbar";
+
 
 
 
@@ -151,7 +153,9 @@ class Home extends Component {
     value: { min: 0, max: 0 },
     language:true,
     dir:"rtl",
-    loading:false
+    loading:false,
+    paginationView:[],
+    paginationCount:1
   };
 
   componentDidMount() {
@@ -161,11 +165,19 @@ class Home extends Component {
       });
     });
 
+
     this.handelMinMaxRange();
 
     $(window).on("scroll", () => {
       let scrollHeight = $(document).height();
       let scrollPosition = $(window).height() + $(window).scrollTop();
+      console.log("w-h", $(window).height());
+        console.log("d-h", $(document).height());
+        console.log("w-s", $(window).scrollTop());
+        // if($(window).scrollTop()===800){
+        //   this.pushDataPagination() 
+        // }
+        
       if ((scrollHeight - scrollPosition) / scrollHeight === 0) {
         console.log("w-h", $(window).height());
         console.log("d-h", $(document).height());
@@ -173,9 +185,32 @@ class Home extends Component {
       }
     }); 
 
-   
+
+
 
   }
+
+
+
+  pushDataPagination = () => {
+    // this.state.paginationView = this.state.carsSource.map(((car , index )=>{
+    let item = Math.floor( this.state.carsSource.length / 8 )
+    if(this.state.paginationCount  <=  item){
+     let data = 8 * this.state.paginationCount 
+     this.state.paginationView = this.state.carsSource.map(((car , index )=>{
+      
+
+      console.log( car[index<=data])
+
+
+       }))   
+      
+      // this.setState({paginationView:this.state.paginationView})
+    }
+    // }))    
+    //  this.setState({paginationCount:this.state.paginationCount+1})
+  }
+
 
 
 handelLanguage = () => {
@@ -337,16 +372,36 @@ handelLanguage = () => {
 
     return (
       <div >
-        
+      
          <Navbar 
           lang={(this.state.language)?"en":"ar"}
           clicked={this.handelLanguage}
-          clickRefresh={this.handelRefresh}/>
+          clickRefresh={this.handelRefresh}/> 
 
-        <div className="container" style={{paddingTop: "95px" , display: "flex"}}>
+        <div className="container"  style={ !this.state.language ? {paddingTop: "80px", marginRight:0, display: "flex",flexDirection: "row-reverse"}:{paddingTop: "80px", marginLeft:0, display: "flex"}}  >
+        {/* <Navbar 
+          lang={(this.state.language)?"en":"ar"}
+          clicked={this.handelLanguage}
+          clickRefresh={this.handelRefresh}/> */}
+
+        <section style={ !this.state.language ? {backgroundColor:"red" , minWidth:"5%" ,height:"900px",marginTop:"-10px",position:"fixed",right:0  }:{backgroundColor:"red" , minWidth:"5%" ,height:"900px",marginTop:"-10px",position:"fixed",left:0  }} >
+            <div style={{textAlign: "center",marginTop:"-33px"}} >
+            
+              <div style={{padding:"25px",backgroundColor:"#f2f2f2"}} ><i className ="fas fa-car"></i></div>
+              <div style={{padding:"25px"}}><i className  ="far fa-credit-card"></i></div>
+              <div style={{padding:"25px"}}><i className  ="fas fa-home"></i></div>
+              <div style={{padding:"25px"}}><i className  ="fas fa-image"></i></div>  
+              <div style={{padding:"25px"}}><i className  ="fas fa-plus-circle"></i></div>
+              <div style={{padding:"25px"}}><i className  ="fas fa-cogs"></i></div>
+              <div style={{padding:"25px"}}><i className  ="fas fa-heartbeat"></i></div>
+            </div>
+
+          </section>
+
           <section
             className="container"
-            style={{ color: "black", flex: "1", minWidth: "25%" }}
+            // ,marginRight: "45px"
+            style={{ color: "black", flex: "1", minWidth: "25%",height:"900px", marginLeft: "8%"}}
           >
             <ConditionFilter
               clickedReset={this.handelReset}
@@ -363,6 +418,7 @@ handelLanguage = () => {
                 used: this.state.checkedBoxUsed,
                 scrap: this.state.checkedBoxScrap
               }}
+              lang={(this.state.language)?"en":"ar"}
             />
             <hr />
             <button
@@ -387,7 +443,7 @@ handelLanguage = () => {
               />
             </div>
           </section>
-          <section style={{ minWidth: "75%" }}>
+          <section style={{ minWidth: "75%",height:"900px" }}>
             <TopFilter
               clickedGrid={this.handleShowCard.bind(null,true)}
               clickedList={this.handleShowCard.bind(null,false)}
@@ -397,7 +453,7 @@ handelLanguage = () => {
               clickedTime={this.handleSort.bind(this, "endDate")}
               changedName={this.handleFilterByName}
             />
-            
+            <div >
             {(this.state.loading)  ? <div id="preloader">
                                       <div id="loader"></div>
                                     </div> : <CardList
@@ -406,8 +462,10 @@ handelLanguage = () => {
               lang={(this.state.language)?"en":"ar"}
               loading ={this.state.loading}
             />  }
+           </div> 
             
           </section>
+         
         </div>
       </div>
     
