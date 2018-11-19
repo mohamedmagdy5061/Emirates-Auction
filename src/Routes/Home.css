@@ -1,11 +1,54 @@
-
-Home.buttonDocorationNone {
+/* 
+*{
+  padding: 0px;
+  margin: 0px;
+  box-sizing: border-box;
+} */
+/* Home.buttonDocorationNone {
     border: "none";
     background: "none";
     cursor: "pointer";
     margin:"5px"
     
-  };
+  }; */
 
+ .pageLayouts{
+   display: flex;
+   /* width: 100%; */
+  }
 
+  .siedMenu{
+    background-color: red;
+    /* width: 4%; */
+  }
   
+  .main{
+    /* width: 96%; */
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap
+  }
+  .mainDisplay{
+display: flex
+  }
+
+  .showData{
+    width: 100%;
+    max-width: 70%
+  }
+
+  .nav-bars{
+    background-color: #fff;
+    padding: 0px;
+    margin-bottom: 10px
+  }
+
+
+  .filterSide{
+
+    margin-left: 2%;
+    margin-right: 2%;
+    width: 15%;
+  }
+
+

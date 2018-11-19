@@ -6,11 +6,9 @@ import InputRange from "react-input-range";
 import { GetData } from "../ApiServices/GetData";
 import "react-input-range/lib/css/index.css";
 import $ from "jquery";
-import EALogo from "../Assets/logooo.png"
-import Navbar from  "../Components/Navbar/Navbar";
-
-
-
+import EALogo from "../Assets/logooo.png";
+import Navbar from "../Components/Navbar/Navbar";
+import "./Home.css";
 
 class Home extends Component {
   state = {
@@ -151,20 +149,20 @@ class Home extends Component {
     checkedBoxUsed: false,
     checkedBoxScrap: false,
     value: { min: 0, max: 0 },
-    language:true,
-    dir:"rtl",
-    loading:false,
-    paginationView:[],
-    paginationCount:1
+    language: true,
+    dir: "rtl",
+    loading: false,
+    paginationView: [],
+    paginationCount: 1
   };
 
   componentDidMount() {
     GetData().then(cars => {
-      this.setState(() => {
+      // localStorage.setItem('myCar', JSON.stringify( cars));
+      this.setState(() => { 
         return { carsSource: cars };
       });
     });
-
 
     this.handelMinMaxRange();
 
@@ -172,53 +170,40 @@ class Home extends Component {
       let scrollHeight = $(document).height();
       let scrollPosition = $(window).height() + $(window).scrollTop();
       console.log("w-h", $(window).height());
-        console.log("d-h", $(document).height());
-        console.log("w-s", $(window).scrollTop());
-        // if($(window).scrollTop()===800){
-        //   this.pushDataPagination() 
-        // }
-        
+      console.log("d-h", $(document).height());
+      console.log("w-s", $(window).scrollTop());
+      // if($(window).scrollTop()===800){
+      //   this.pushDataPagination()
+      // }
+
       if ((scrollHeight - scrollPosition) / scrollHeight === 0) {
         console.log("w-h", $(window).height());
         console.log("d-h", $(document).height());
         console.log("w-s", $(window).scrollTop());
       }
-    }); 
-
-
-
-
+    });
   }
-
-
 
   pushDataPagination = () => {
     // this.state.paginationView = this.state.carsSource.map(((car , index )=>{
-    let item = Math.floor( this.state.carsSource.length / 8 )
-    if(this.state.paginationCount  <=  item){
-     let data = 8 * this.state.paginationCount 
-     this.state.paginationView = this.state.carsSource.map(((car , index )=>{
-      
+    let item = Math.floor(this.state.carsSource.length / 8);
+    if (this.state.paginationCount <= item) {
+      let data = 8 * this.state.paginationCount;
+      this.state.paginationView = this.state.carsSource.map((car, index) => {
+        console.log(car[index <= data]);
+      });
 
-      console.log( car[index<=data])
-
-
-       }))   
-      
       // this.setState({paginationView:this.state.paginationView})
     }
-    // }))    
+    // }))
     //  this.setState({paginationCount:this.state.paginationCount+1})
-  }
+  };
 
-
-
-handelLanguage = () => {
-  const arabic = this.state.language;
-  this.setState({ language : !arabic });
-  console.log(this.state.lang);
-};
-
+  handelLanguage = () => {
+    const arabic = this.state.language;
+    this.setState({ language: !arabic });
+    console.log(this.state.lang);
+  };
 
   handelReset = () => {
     this.setState({
@@ -232,24 +217,28 @@ handelLanguage = () => {
     });
   };
 
-
   handelRefresh = () => {
     // window.location.reload();
-    setTimeout(()=>{
-      this.setState({carsSource: [], loading:true})
-      
-      setTimeout(()=> {GetData().then(cars => this.setState({carsSource: cars,loading:false}))},2500)
-      
-    },1000)
-}
+    setTimeout(() => {
+      this.setState({ carsSource: [], loading: true });
 
+      setTimeout(() => {
+        GetData().then(cars =>
+          this.setState({ carsSource: cars, loading: false })
+        );
+      }, 2500);
+    });
+  };
 
   handleShowCard = type => {
-    this.setState({ show : type });
+    this.setState({ show: type });
   };
 
   sorting = (value1, value2) => {
-    const temp = (this.state.cars != "" ? this.state.cars : this.state.carsSource).sort((a, b) => {
+    const temp = (this.state.cars != ""
+      ? this.state.cars
+      : this.state.carsSource
+    ).sort((a, b) => {
       if (value2 === "undefined") {
         a = a[value1];
         b = b[value1];
@@ -265,26 +254,22 @@ handelLanguage = () => {
   handleSort = sortBy => {
     switch (sortBy) {
       case "price":
-        
-        let tempPrice = this.sorting("AuctionInfo","currentPrice");
+        let tempPrice = this.sorting("AuctionInfo", "currentPrice");
         this.setState({ cars: tempPrice });
         break;
 
       case "year":
-      
-        let tempYear = this.sorting("year","undefined");
+        let tempYear = this.sorting("year", "undefined");
         this.setState({ cars: tempYear });
         break;
 
       case "endDate":
-      
-        let tempEndDate = this.sorting("AuctionInfo","endDate");
+        let tempEndDate = this.sorting("AuctionInfo", "endDate");
         this.setState({ cars: tempEndDate });
         break;
 
       case "bids":
-      
-        let tempBids = this.sorting("AuctionInfo","bids");
+        let tempBids = this.sorting("AuctionInfo", "bids");
         this.setState({ cars: tempBids });
         break;
 
@@ -371,108 +356,123 @@ handelLanguage = () => {
     const { nameFilter } = this.state;
 
     return (
-      <div >
-      
-         <Navbar 
-          lang={(this.state.language)?"en":"ar"}
-          clicked={this.handelLanguage}
-          clickRefresh={this.handelRefresh}/> 
-
-        <div className="container"  style={ !this.state.language ? {paddingTop: "80px", marginRight:0, display: "flex",flexDirection: "row-reverse"}:{paddingTop: "80px", marginLeft:0, display: "flex"}}  >
-        {/* <Navbar 
-          lang={(this.state.language)?"en":"ar"}
-          clicked={this.handelLanguage}
-          clickRefresh={this.handelRefresh}/> */}
-
-        <section style={ !this.state.language ? {backgroundColor:"red" , minWidth:"5%" ,height:"900px",marginTop:"-10px",position:"fixed",right:0  }:{backgroundColor:"red" , minWidth:"5%" ,height:"900px",marginTop:"-10px",position:"fixed",left:0  }} >
-            <div style={{textAlign: "center",marginTop:"-33px"}} >
-            
-              <div style={{padding:"25px",backgroundColor:"#f2f2f2"}} ><i className ="fas fa-car"></i></div>
-              <div style={{padding:"25px"}}><i className  ="far fa-credit-card"></i></div>
-              <div style={{padding:"25px"}}><i className  ="fas fa-home"></i></div>
-              <div style={{padding:"25px"}}><i className  ="fas fa-image"></i></div>  
-              <div style={{padding:"25px"}}><i className  ="fas fa-plus-circle"></i></div>
-              <div style={{padding:"25px"}}><i className  ="fas fa-cogs"></i></div>
-              <div style={{padding:"25px"}}><i className  ="fas fa-heartbeat"></i></div>
+      <div>
+        <div className="pageLayouts" style={ this.state.language ? null: {flexDirection: "row-reverse"} }  >
+          <div className="siedMenu">
+            <div style={{ padding: "17px" }}>
+              <img style={{ width: "30px" }} src={EALogo} alt="logo" />
             </div>
-
-          </section>
-
-          <section
-            className="container"
-            // ,marginRight: "45px"
-            style={{ color: "black", flex: "1", minWidth: "25%",height:"900px", marginLeft: "8%"}}
-          >
-            <ConditionFilter
-              clickedReset={this.handelReset}
-              filterData={this.state.carsSource}
-              modelData={this.state.cars}
-              changedMake={this.handelOptionMake}
-              changedModel={this.handelOptionModel}
-              clickedd={this.click}
-              clickedNew={this.handelNewCar}
-              clickedUsed={this.handelUsedCar}
-              clickedScrap={this.handelScrapCar}
-              checkedBox={{
-                new: this.state.checkedBoxNew,
-                used: this.state.checkedBoxUsed,
-                scrap: this.state.checkedBoxScrap
-              }}
-              lang={(this.state.language)?"en":"ar"}
-            />
-            <hr />
-            <button
-              disabled
-              style={{
-                color: "#3a3a3a",
-                display: "flex",
-                justifyContent: "start",
-                marginBottom: "20px",
-                border: "none",
-                background: "none"
-              }}
-            >
-              Price:
-            </button>
-            <div style={{ maxWidth: "90%", margin: "auto" }}>
-              <InputRange
-                maxValue={this.state.max}
-                minValue={this.state.min}
-                value={this.state.value}
-                onChange={value => this.handleRange(value)}
+            <div style={{ padding: "25px", backgroundColor: "#f2f2f2" }}>
+              <i className="fas fa-car" />
+            </div>
+            <div style={{ padding: "25px" }}>
+              <i className="far fa-credit-card" />
+            </div>
+            <div style={{ padding: "25px" }}>
+              <i className="fas fa-home" />
+            </div>
+            <div style={{ padding: "25px" }}>
+              <i className="fas fa-image" />
+            </div>
+            <div style={{ padding: "25px" }}>
+              <i className="fas fa-plus-circle" />
+            </div>
+            <div style={{ padding: "25px" }}>
+              <i className="fas fa-cogs" />
+            </div>
+            <div style={{ padding: "25px" }}>
+              <i className="fas fa-heartbeat" />
+            </div>
+          </div>
+          <div className="main" >
+            <div className="nav-bars" >
+              <Navbar
+                lang={this.state.language ? "en" : "ar"}
+                clicked={this.handelLanguage}
+                clickRefresh={this.handelRefresh}
               />
             </div>
-          </section>
-          <section style={{ minWidth: "75%",height:"900px" }}>
-            <TopFilter
-              clickedGrid={this.handleShowCard.bind(null,true)}
-              clickedList={this.handleShowCard.bind(null,false)}
-              clickedPrice={this.handleSort.bind(this, "price")}
-              clickedYear={this.handleSort.bind(this, "year")}
-              clickedBid={this.handleSort.bind(this, "bids")}
-              clickedTime={this.handleSort.bind(this, "endDate")}
-              changedName={this.handleFilterByName}
-            />
-            <div >
-            {(this.state.loading)  ? <div id="preloader">
-                                      <div id="loader"></div>
-                                    </div> : <CardList
-              show={this.state.show}
-              carData={this.filterByName(nameFilter)}
-              lang={(this.state.language)?"en":"ar"}
-              loading ={this.state.loading}
-            />  }
-           </div> 
-            
-          </section>
-         
+            <div className="mainDisplay" style={ this.state.language ? null: {flexDirection: "row-reverse"} } >
+              <div className="filterSide">
+                <ConditionFilter
+                  clickedReset={this.handelReset}
+                  filterData={this.state.carsSource}
+                  modelData={this.state.cars}
+                  changedMake={this.handelOptionMake}
+                  changedModel={this.handelOptionModel}
+                  clickedd={this.click}
+                  clickedNew={this.handelNewCar}
+                  clickedUsed={this.handelUsedCar}
+                  clickedScrap={this.handelScrapCar}
+                  checkedBox={{
+                    new: this.state.checkedBoxNew,
+                    used: this.state.checkedBoxUsed,
+                    scrap: this.state.checkedBoxScrap
+                  }}
+                  lang={this.state.language ? "en" : "ar"}
+                />
+                <hr />
+                <button
+                  disabled
+                  style={ this.state.language ? {
+                    color: "#3a3a3a",
+                    marginBottom: "20px",
+                    border: "none",
+                    background: "none",
+                    textAlign: "start",
+                    display: "block",
+                    width: "100%"
+                  }: {
+                    color: "#3a3a3a",
+                    marginBottom: "20px",
+                    border: "none",
+                    background: "none",
+                    textAlign: "end",
+                    display: "block",
+                    width: "100%"
+                    
+                  }}
+                  
+                >
+                  {this.state.language  ? "Price" : "السعر"}
+                </button>
+                <div>
+                  <InputRange
+                    maxValue={this.state.max}
+                    minValue={this.state.min}
+                    value={this.state.value}
+                    onChange={value => this.handleRange(value)}
+                  />
+                </div>
+              </div>
+
+              <div className="showData">
+                <div className="topFilter">
+                  <TopFilter
+                    clickedGrid={this.handleShowCard.bind(null, true)}
+                    clickedList={this.handleShowCard.bind(null, false)}
+                    clickedPrice={this.handleSort.bind(this, "price")}
+                    clickedYear={this.handleSort.bind(this, "year")}
+                    clickedBid={this.handleSort.bind(this, "bids")}
+                    clickedTime={this.handleSort.bind(this, "endDate")}
+                    changedName={this.handleFilterByName}
+                  />
+                </div>
+                <div className="data">
+                    <CardList
+                      show={this.state.show}
+                      carData={this.filterByName(nameFilter)}
+                      lang={this.state.language ? "en" : "ar"}
+                      loading={this.state.loading}
+                    />  
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-    
     );
   }
 }
 
 export default Home;
-
-

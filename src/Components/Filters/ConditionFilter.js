@@ -23,12 +23,7 @@ const ConditionFilter = props => (
         marginBottom: "20px"
       }}
     >
-      {/* <button
-        disabled
-        style={{ color: "#3a3a3a", border: "none", background: "none" }}
-      >
-        FILTER
-      </button> */}
+
     </div>
 
     <div
@@ -40,7 +35,7 @@ const ConditionFilter = props => (
         marginBottom: "20px"
       }}
     >
-    <div style={{margin: "10% 8%"}}>
+    <div  style={ props.lang === "en" ?{width:"100%"} : {width:"100%",textAlign:"end"}} >
       <div className="custom-control custom-checkbox">
         <input
           type="checkbox"
@@ -100,7 +95,7 @@ const ConditionFilter = props => (
 
       <br />
 
-      <span style={{ color: "#3a3a3a" }}>Make:</span>
+      <span style={ props.lang === "en" ?{width:"100%",color: "#3a3a3a"} : {width:"100%",color: "#3a3a3a" ,textAlign:"end"}}>{props.lang === "en" ?" Make:" : ":الماركه"}</span>
       <select
         className="custom-select"
         onChange={e => props.changedMake(e.target.value)}
@@ -123,7 +118,7 @@ const ConditionFilter = props => (
       </select>
       <br />
 
-      <span style={{ color: "#3a3a3a" }}>Model: </span>
+      <span style={ props.lang === "en" ?{width:"100%",color: "#3a3a3a"} : {width:"100%",color: "#3a3a3a" ,textAlign:"end"}}>{props.lang === "en" ?" Model:" : ":الموديل"} </span>
       <select
         className="custom-select"
         onChange={e => props.changedModel(e.target.value)}

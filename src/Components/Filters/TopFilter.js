@@ -1,10 +1,6 @@
 import React from "react";
+import "./TopFilter.css"
 
-const buttonDocorationNone = {
-  border: "none",
-  background: "none",
-  cursor: "pointer"
-};
 
 const TopFilter = props => (
   <div>
@@ -18,22 +14,22 @@ const TopFilter = props => (
           onChange={props.changedName}
         />
       </form>
-      <button onClick={props.clickedGrid} style={buttonDocorationNone}>
+      <button onClick={props.clickedGrid}  className="buttonDocorationNone">
         <i className="fas fa-th" />
       </button>
-      <button onClick={props.clickedList} style={buttonDocorationNone}>
+      <button onClick={props.clickedList} className="buttonDocorationNone">
         <i className="fas fa-th-list" />
       </button>
-      <button onClick={props.clickedTime} style={buttonDocorationNone}>
+      <button onClick={props.clickedTime} className="buttonDocorationNone">
         BY END TIME
       </button>
-      <button onClick={props.clickedBid} style={buttonDocorationNone}>
+      <button onClick={props.clickedBid} className="buttonDocorationNone">
         BY BIDS
       </button>
-      <button onClick={props.clickedYear} style={buttonDocorationNone}>
+      <button onClick={props.clickedYear} className="buttonDocorationNone">
         BY YEAR
       </button>
-      <button onClick={props.clickedPrice} style={buttonDocorationNone}>
+      <button onClick={props.clickedPrice} className="buttonDocorationNone">
         BY PRICE
       </button>
     </nav>
