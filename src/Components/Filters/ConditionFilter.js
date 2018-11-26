@@ -1,7 +1,7 @@
 import React from "react";
 
 const ConditionFilter = props => (
-  <div>
+  <div dir = {props.lang === "ar" ? "rtl" : "ltr" }>
     <button
       onClick={props.clickedReset}
       style={{
@@ -35,7 +35,7 @@ const ConditionFilter = props => (
         marginBottom: "20px"
       }}
     >
-    <div  style={ props.lang === "en" ?{width:"100%"} : {width:"100%",textAlign:"end"}} >
+    <div >
       <div className="custom-control custom-checkbox">
         <input
           type="checkbox"
@@ -95,7 +95,7 @@ const ConditionFilter = props => (
 
       <br />
 
-      <span style={ props.lang === "en" ?{width:"100%",color: "#3a3a3a"} : {width:"100%",color: "#3a3a3a" ,textAlign:"end"}}>{props.lang === "en" ?" Make:" : ":الماركه"}</span>
+      <span >{props.lang === "en" ?" Make:" : ":الماركه"}</span>
       <select
         className="custom-select"
         onChange={e => props.changedMake(e.target.value)}
@@ -118,7 +118,7 @@ const ConditionFilter = props => (
       </select>
       <br />
 
-      <span style={ props.lang === "en" ?{width:"100%",color: "#3a3a3a"} : {width:"100%",color: "#3a3a3a" ,textAlign:"end"}}>{props.lang === "en" ?" Model:" : ":الموديل"} </span>
+      <span>{props.lang === "en" ?" Model:" : ":الموديل"} </span>
       <select
         className="custom-select"
         onChange={e => props.changedModel(e.target.value)}

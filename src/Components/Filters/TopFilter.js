@@ -9,7 +9,7 @@ const TopFilter = props => (
         <input
           className="form-control mr-sm-2"
           type="search"
-          placeholder="Search"
+          placeholder={props.lang === "en" ?  "Search" : "بحث"}
           aria-label="Search"
           onChange={props.changedName}
         />
@@ -21,16 +21,16 @@ const TopFilter = props => (
         <i className="fas fa-th-list" />
       </button>
       <button onClick={props.clickedTime} className="buttonDocorationNone">
-        BY END TIME
+        {props.lang === "en" ?  "BY END TIME" : "انتهاء الوقت"}
       </button>
       <button onClick={props.clickedBid} className="buttonDocorationNone">
-        BY BIDS
+        {props.lang === "en" ?  "BY BIDS" : "العروض"} 
       </button>
       <button onClick={props.clickedYear} className="buttonDocorationNone">
-        BY YEAR
+      {props.lang === "en" ?  "BY YEAR" : "السنه"} 
       </button>
       <button onClick={props.clickedPrice} className="buttonDocorationNone">
-        BY PRICE
+      {props.lang === "en" ?  "BY PRICE" : "السعر"}
       </button>
     </nav>
   </div>

@@ -3,7 +3,8 @@ import TimeDown from "../../../Components/TimeCountDown/TimeDown";
 
 const ListViewCard = props => {
   return (
-    <div
+   
+    <div dir = {props.lang === "ar" ? "rtl" : "ltr" }
       className="container center"
       style={{
         color: "gray",
@@ -18,7 +19,7 @@ const ListViewCard = props => {
         marginBottom: "5px"
       }}
     >
-      <div style={{ width: "40%" }}>
+      <div style={{ width: "30%" }}>
         <img
           style={{ maxHeight: 150, minHeight: 150, borderRadius: "0px" }}
           className="card-img-top"
@@ -53,6 +54,7 @@ const ListViewCard = props => {
         </div>
       </div>
     </div>
+    
   );
 };
 

@@ -9,6 +9,8 @@ import $ from "jquery";
 import EALogo from "../Assets/logooo.png";
 import Navbar from "../Components/Navbar/Navbar";
 import "./Home.css";
+import { connect } from 'react-redux';
+
 
 class Home extends Component {
   state = {
@@ -144,13 +146,10 @@ class Home extends Component {
     modelFilter: "",
     min: 0,
     max: 0,
-    lang: true,
     checkedBoxNew: false,
     checkedBoxUsed: false,
     checkedBoxScrap: false,
     value: { min: 0, max: 0 },
-    language: true,
-    dir: "rtl",
     loading: false,
     paginationView: [],
     paginationCount: 1
@@ -169,13 +168,6 @@ class Home extends Component {
     $(window).on("scroll", () => {
       let scrollHeight = $(document).height();
       let scrollPosition = $(window).height() + $(window).scrollTop();
-      console.log("w-h", $(window).height());
-      console.log("d-h", $(document).height());
-      console.log("w-s", $(window).scrollTop());
-      // if($(window).scrollTop()===800){
-      //   this.pushDataPagination()
-      // }
-
       if ((scrollHeight - scrollPosition) / scrollHeight === 0) {
         console.log("w-h", $(window).height());
         console.log("d-h", $(document).height());
@@ -185,25 +177,33 @@ class Home extends Component {
   }
 
   pushDataPagination = () => {
-    // this.state.paginationView = this.state.carsSource.map(((car , index )=>{
-    let item = Math.floor(this.state.carsSource.length / 8);
-    if (this.state.paginationCount <= item) {
-      let data = 8 * this.state.paginationCount;
-      this.state.paginationView = this.state.carsSource.map((car, index) => {
-        console.log(car[index <= data]);
-      });
-
-      // this.setState({paginationView:this.state.paginationView})
-    }
-    // }))
-    //  this.setState({paginationCount:this.state.paginationCount+1})
+    // // this.state.paginationView = this.state.carsSource.map(((car , index )=>{
+    // let item = Math.floor(this.state.carsSource.length / 8);
+    // if (this.state.paginationCount <= item) {
+    //   let data = 8 * this.state.paginationCount;
+    //   this.state.paginationView = this.state.carsSource.map((car, index) => {
+    //     console.log(car[index <= data]);
+    //   });
+    //   // this.setState({paginationView:this.state.paginationView})
+    // }
+    // // }))
+    // //  this.setState({paginationCount:this.state.paginationCount+1})
   };
 
-  handelLanguage = () => {
-    const arabic = this.state.language;
-    this.setState({ language: !arabic });
-    console.log(this.state.lang);
-  };
+  // handelLanguage = () => {
+  //   console.log(this.props)
+  //   // const arabic = this.state.language;
+  //   // this.setState({ language: !arabic });
+  // this.props.dispatch({ type: 'ar' });
+   
+  // };
+
+
+   // if(this.state.language){
+    //   this.props.dispatch({ type: 'en' });
+    // }else{
+    //   this.props.dispatch({ type: 'ar' });
+    // }
 
   handelReset = () => {
     this.setState({
@@ -338,7 +338,7 @@ class Home extends Component {
         elem => elem.AuctionInfo.currentPrice + 50
       )
     );
-    console.log(min, "||", max);
+    // console.log(min, "||", max);
     this.setState({ min: min, max: max });
   };
 
@@ -352,12 +352,14 @@ class Home extends Component {
     this.setState({ cars: carModel });
   };
 
+
+  
+
   render() {
     const { nameFilter } = this.state;
-
     return (
       <div>
-        <div className="pageLayouts" style={ this.state.language ? null: {flexDirection: "row-reverse"} }  >
+        <div className="pageLayouts" style={ this.props.language === "en" ? null: {flexDirection: "row-reverse"} }  >
           <div className="siedMenu">
             <div style={{ padding: "17px" }}>
               <img style={{ width: "30px" }} src={EALogo} alt="logo" />
@@ -387,12 +389,10 @@ class Home extends Component {
           <div className="main" >
             <div className="nav-bars" >
               <Navbar
-                lang={this.state.language ? "en" : "ar"}
-                clicked={this.handelLanguage}
                 clickRefresh={this.handelRefresh}
               />
             </div>
-            <div className="mainDisplay" style={ this.state.language ? null: {flexDirection: "row-reverse"} } >
+            <div className="mainDisplay" style={ this.props.language === "en" ? null: {flexDirection: "row-reverse"} } >
               <div className="filterSide">
                 <ConditionFilter
                   clickedReset={this.handelReset}
@@ -409,12 +409,12 @@ class Home extends Component {
                     used: this.state.checkedBoxUsed,
                     scrap: this.state.checkedBoxScrap
                   }}
-                  lang={this.state.language ? "en" : "ar"}
+                  lang={this.props.language === "en" ? "en" : "ar"}
                 />
                 <hr />
                 <button
                   disabled
-                  style={ this.state.language ? {
+                  style={ this.props.language === "en" ? {
                     color: "#3a3a3a",
                     marginBottom: "20px",
                     border: "none",
@@ -434,7 +434,7 @@ class Home extends Component {
                   }}
                   
                 >
-                  {this.state.language  ? "Price" : "السعر"}
+                  {this.props.language === "en" ? "Price" : "السعر"}
                 </button>
                 <div>
                   <InputRange
@@ -456,13 +456,14 @@ class Home extends Component {
                     clickedBid={this.handleSort.bind(this, "bids")}
                     clickedTime={this.handleSort.bind(this, "endDate")}
                     changedName={this.handleFilterByName}
+                    lang={this.props.language === "en" ? "en" : "ar"}
                   />
                 </div>
                 <div className="data">
                     <CardList
                       show={this.state.show}
                       carData={this.filterByName(nameFilter)}
-                      lang={this.state.language ? "en" : "ar"}
+                      lang={this.props.language === "en" ? "en" : "ar"}
                       loading={this.state.loading}
                     />  
                 </div>
@@ -475,4 +476,10 @@ class Home extends Component {
   }
 }
 
-export default Home;
+function mapStateToProps(state) {
+  return {
+    language : state.language
+  };
+}
+
+export default connect(mapStateToProps)(Home);

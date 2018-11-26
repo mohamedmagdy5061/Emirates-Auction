@@ -6,7 +6,9 @@ class About extends Component {
     
     return (
       <div>
-        <Navbar clicked={this.handelLanguage} />
+        <Navbar
+        lang="en"
+        clicked={this.handelLanguage} />
         <div className="container" style={{paddingTop: "95px" }}>
         <h1>It is About Page</h1>
         </div>
