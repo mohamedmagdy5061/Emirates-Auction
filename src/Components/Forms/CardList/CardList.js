@@ -4,7 +4,7 @@ import ListViewCard from "../CardForm/ListViewCard";
 
 const CardList = props => {
   return (
-    !props.loading ? <div className="row">
+    !props.loading ? <div className="row justify-content-center">
       {props.carData.map((card ,index) => (
            (props.show) ? <GridViewCard index={index} lang={props.lang} key={card.carID} {...card} /> : < ListViewCard lang={props.lang} index={index} key={card.carID} {...card} />
       ))}

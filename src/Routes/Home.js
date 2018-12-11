@@ -145,17 +145,18 @@ class Home extends Component {
     makeFilter: "",
     modelFilter: "",
     min: 0,
-    max: 0,
+    max: 100,
     checkedBoxNew: false,
     checkedBoxUsed: false,
     checkedBoxScrap: false,
-    value: { min: 0, max: 0 },
+    value: { min: 0, max: 100 },
     loading: false,
     paginationView: [],
     paginationCount: 1
   };
 
   componentDidMount() {
+
     GetData().then(cars => {
       // localStorage.setItem('myCar', JSON.stringify( cars));
       this.setState(() => { 
@@ -173,7 +174,8 @@ class Home extends Component {
         console.log("d-h", $(document).height());
         console.log("w-s", $(window).scrollTop());
       }
-    });
+    }); 
+    
   }
 
   pushDataPagination = () => {
@@ -195,15 +197,7 @@ class Home extends Component {
   //   // const arabic = this.state.language;
   //   // this.setState({ language: !arabic });
   // this.props.dispatch({ type: 'ar' });
-   
   // };
-
-
-   // if(this.state.language){
-    //   this.props.dispatch({ type: 'en' });
-    // }else{
-    //   this.props.dispatch({ type: 'ar' });
-    // }
 
   handelReset = () => {
     this.setState({
@@ -218,16 +212,13 @@ class Home extends Component {
   };
 
   handelRefresh = () => {
-    // window.location.reload();
-    setTimeout(() => {
       this.setState({ carsSource: [], loading: true });
-
       setTimeout(() => {
+        
         GetData().then(cars =>
           this.setState({ carsSource: cars, loading: false })
         );
-      }, 2500);
-    });
+      },2000);
   };
 
   handleShowCard = type => {
@@ -339,7 +330,7 @@ class Home extends Component {
       )
     );
     // console.log(min, "||", max);
-    this.setState({ min: min, max: max });
+    this.setState({ min: min, max: max,value:{min,max} });
   };
 
   handelOptionMake = value => {
@@ -357,6 +348,12 @@ class Home extends Component {
 
   render() {
     const { nameFilter } = this.state;
+    //  this.props.match.params.lang = this.props.language
+    // console.log("from homedddddd",this.props)
+    // console.log(this.props.match.params)
+    // // console.lo g(param)
+    // this.props.location.state = this.props.language
+
     return (
       <div>
         <div className="pageLayouts" style={ this.props.language === "en" ? null: {flexDirection: "row-reverse"} }  >
@@ -367,33 +364,33 @@ class Home extends Component {
             <div style={{ padding: "25px", backgroundColor: "#f2f2f2" }}>
               <i className="fas fa-car" />
             </div>
-            <div style={{ padding: "25px" }}>
+            <div style={{ padding: "25px",color:"#FFF " }}>
               <i className="far fa-credit-card" />
             </div>
-            <div style={{ padding: "25px" }}>
+            <div style={{ padding: "25px",color:"#FFF " }}>
               <i className="fas fa-home" />
             </div>
-            <div style={{ padding: "25px" }}>
+            <div style={{ padding: "25px",color:"#FFF " }}>
               <i className="fas fa-image" />
             </div>
-            <div style={{ padding: "25px" }}>
+            <div style={{ padding: "25px",color:"#FFF " }}>
               <i className="fas fa-plus-circle" />
             </div>
-            <div style={{ padding: "25px" }}>
+            <div style={{ padding: "25px",color:"#FFF " }}>
               <i className="fas fa-cogs" />
             </div>
-            <div style={{ padding: "25px" }}>
+            <div style={{ padding: "25px",color:"#FFF " }}>
               <i className="fas fa-heartbeat" />
             </div>
           </div>
-          <div className="main" >
-            <div className="nav-bars" >
+          <div className="main"  style={this.props.language === "en" ? {marginLeft:"71px"}:{marginRight:"71px"}} >
+            <div className="nav-bars" style ={{position:"fixed",width:"96vw",zIndex:1000}} >
               <Navbar
                 clickRefresh={this.handelRefresh}
               />
             </div>
-            <div className="mainDisplay" style={ this.props.language === "en" ? null: {flexDirection: "row-reverse"} } >
-              <div className="filterSide">
+            <div className="mainDisplay" style={ this.props.language === "en" ? {marginTop:"5%"}: {flexDirection: "row-reverse",marginTop:"5%"} } >
+              <div className="filterSide" style={this.props.language === "en" ?{position:"fixed",height:"100vh", marginLeft: "2%"}:{position:"fixed",height:"100vh",marginLeft: "-2%"}}>
                 <ConditionFilter
                   clickedReset={this.handelReset}
                   filterData={this.state.carsSource}
@@ -446,7 +443,7 @@ class Home extends Component {
                 </div>
               </div>
 
-              <div className="showData">
+              <div className="showData" style={this.props.language === "en" ?{marginLeft: "20%"}:{marginRight :"20%"}}>
                 <div className="topFilter">
                   <TopFilter
                     clickedGrid={this.handleShowCard.bind(null, true)}
@@ -457,6 +454,7 @@ class Home extends Component {
                     clickedTime={this.handleSort.bind(this, "endDate")}
                     changedName={this.handleFilterByName}
                     lang={this.props.language === "en" ? "en" : "ar"}
+                   
                   />
                 </div>
                 <div className="data">

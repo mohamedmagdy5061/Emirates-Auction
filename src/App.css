@@ -57,7 +57,10 @@ body{
 }
 
 .input-range__track--active {
-  background:#424242 !important ;
+  /* background:#424242 !important ; */
+  background:#d00b0b !important ;
+
+  
 }
 /* .input-range__track   input-range__track--background  {
   background:red !important ;
@@ -66,11 +69,19 @@ body{
   background:#2c6dc3 !important;
 }
 
+.input-range__label-container {
+  color: blue;
+}
 
 
 
-
-
+.animation:hover{
+transform:scale(1.1);
+transition: all .5s ease-in-out; 
+}
+.animation > img:hover{
+  transform:rotate(90deg)
+}
 
 #preloader {
   position: fixed;

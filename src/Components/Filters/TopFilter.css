@@ -2,11 +2,12 @@
     border: none;
     background: none;
     cursor: pointer;
-    outline: 0;
+    outline: none;
+    color: #3665ac
 }
 
-/* .buttonDocorationNone:hover, 
-.buttonDocorationNone--active{
-    color: red;
-    outline: 0;
-} */
+ 
+.buttonDocorationNone:active{
+    border-bottom: 1px solid #3665ac;
+    outline: none;
+}

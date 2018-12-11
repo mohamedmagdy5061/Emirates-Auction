@@ -13,6 +13,7 @@ export const langStoreState = (state = initialState , action) => {
         return {
             ...state,
             language: 'ar'
+
         }
         default :
         return state

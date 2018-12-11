@@ -18,15 +18,20 @@
   }
 
   .siedMenu{
-    background-color: red;
+    background-color: #ce0606;
+    position: fixed;
     /* width: 4%; */
+    height: 100vh;
   }
   
   .main{
     /* width: 96%; */
     display: flex;
     flex-direction: column;
-    flex-wrap: nowrap
+    flex-wrap: nowrap;
+    min-width: 96%;
+    /* margin-left: 20px; */
+
   }
   .mainDisplay{
 display: flex
@@ -46,8 +51,8 @@ display: flex
 
   .filterSide{
 
-    margin-left: 2%;
-    margin-right: 2%;
+    /* margin-left: 2%;
+    margin-right: 2%; */
     width: 15%;
   }
 

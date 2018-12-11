@@ -1,57 +1,75 @@
-import React from "react";
+import React,{Component} from "react";
 import { NavLink } from "react-router-dom";
 import EALogo from "../../Assets/car-logo.png";
 import "./Navbar.css";
 import { connect } from 'react-redux';
 
 
-const Navbar = props => {
-  console.log(props)
+class Navbar extends Component {
+
+  componentWillReceiveProps(){
+    console.log(this.props)
+  //  this.props.history.push(`${this.props.lang}`)
+
+      
+
+}
+  render() {
+    console.log(this.props)
+   
   return (
     <div>
-      <nav className="navbar navbar-expand-lg navbar-light bg-light" style={props.lang==="en"? null:{flexDirection:"row-reverse"}}>
+      <nav className="navbar navbar-expand-lg navbar-light bg-light" style={this.props.lang==="en"? null:{flexDirection:"row-reverse"}}>
       <a className="navbar-brand" href="/"><img src={EALogo} width="100" style={{ color: "black" }} alt="logo" /></a>
       <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span className="navbar-toggler-icon"></span>
       </button>
 
-      <div className="collapse navbar-collapse" id="navbarSupportedContent" style={props.lang==="en"? null:{flexDirection:"row-reverse"}}>
-        <ul className={props.lang==="en"? "navbar-nav mr-auto":"navbar-nav ml-auto"} style={props.lang==="en"? null:{flexDirection:"row-reverse"}}>
+      <div className="collapse navbar-collapse" id="navbarSupportedContent" style={this.props.lang==="en"? null:{flexDirection:"row-reverse"}}>
+        <ul className={this.props.lang==="en"? "navbar-nav mr-auto":"navbar-nav ml-auto"} style={this.props.lang==="en"? null:{flexDirection:"row-reverse"}}>
           <li className="nav-item">
-              <NavLink className="nav-link" exact to="/" activeClassName={"active"}>
-                {props.lang === "en" ? "Home":"الرئيسي"}
+              <NavLink className="nav-link"  activeStyle={{color:"#22229c"}}  
+                to={`/home/${this.props.lang}`}
+                activeClassName={"active"}>
+                {this.props.lang === "en" ? "Home":"الرئيسيه"}
               </NavLink>
           </li>
           <li className="nav-item">
-              <NavLink className="nav-link" exact to="/about" activeClassName={"active"}>
-                {props.lang === "en" ? "About":"عنا" }
-                
+              <NavLink className="nav-link" 
+                to={`/about/${this.props.lang}`} 
+                activeStyle={{color:"#22229c"}} activeClassName={"active"}>
+                {this.props.lang === "en" ? "About":"من نحن" }  
               </NavLink>
           </li>
           <li className="nav-item">
-              <NavLink className="nav-link" exact to="/faqs" activeClassName={"active"}>
-                {props.lang === "en" ? "FAQs" : "FAQs"}
-                
+              <NavLink className="nav-link"  
+                to={`/faqs/${this.props.lang}`} 
+                activeStyle={{color:"#22229c"}} 
+                activeClassName={"active"}>
+                {this.props.lang === "en" ? "FAQs" : "اسئله شائعه"} 
+                {console.log("from nav li",this.props.lang)} 
               </NavLink>
           </li>
           <li className="nav-item">
-            <NavLink className="nav-link" exact to="/contact-us" activeClassName={"active"}>
-                {props.lang === "en" ?  " Contact Us" : "للتواصل" }
-             
+            <NavLink className="nav-link"   
+              to={`/contact-us/${this.props.lang}`}
+              activeStyle={{color:"#22229c"}} 
+              activeClassName={"active"}>
+              {this.props.lang === "en" ?  " Contact-Us" : "اتصل بنا" }
             </NavLink>
           </li>
           
         </ul>
-        <div className="form-inline my-2 my-lg-0" style={props.lang==="en"? null:{flexDirection:"row-reverse"}} >
+        <div className="form-inline my-2 my-lg-0" style={this.props.lang==="en"? null:{flexDirection:"row-reverse"}} >
         <button
             style={{ border: "none", background: "none", cursor: "pointer" }}
-            onClick={()=>props.changeLang(props.lang)}
+            onClick={()=>this.props.changeLang(this.props.lang)}
           >
-            {props.lang === "en" ? "العربيه" : "English"}
+            {this.props.lang === "en" ? "العربيه" : "English"}
           </button>
           <button
             style={{ border: "none", background: "none", cursor: "pointer" }}
-            onClick={props.clickRefresh}
+            onClick={this.props.clickRefresh}
           >
             <i className="fas fa-sync-alt" />
           </button>
@@ -62,14 +80,19 @@ const Navbar = props => {
   );
 };
 
+}
+
+
 
 function mapDispatchToProps(dispatch) {
   return {
     changeLang: (lan) => {
       if(lan==="en"){
         dispatch({type:"ar"})
+
       }else{
         dispatch({type:"en"})
+       
       }
     },
   }

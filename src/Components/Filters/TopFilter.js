@@ -17,7 +17,7 @@ const TopFilter = props => (
       <button onClick={props.clickedGrid}  className="buttonDocorationNone">
         <i className="fas fa-th" />
       </button>
-      <button onClick={props.clickedList} className="buttonDocorationNone">
+      <button onClick={props.clickedList} id="list" className="buttonDocorationNone">
         <i className="fas fa-th-list" />
       </button>
       <button onClick={props.clickedTime} className="buttonDocorationNone">
@@ -29,10 +29,11 @@ const TopFilter = props => (
       <button onClick={props.clickedYear} className="buttonDocorationNone">
       {props.lang === "en" ?  "BY YEAR" : "السنه"} 
       </button>
-      <button onClick={props.clickedPrice} className="buttonDocorationNone">
+      <button onClick={props.clickedPrice}  className="buttonDocorationNone">
       {props.lang === "en" ?  "BY PRICE" : "السعر"}
       </button>
     </nav>
+
   </div>
 );
 
