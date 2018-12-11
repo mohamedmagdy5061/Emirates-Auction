@@ -158,7 +158,6 @@ class Home extends Component {
   componentDidMount() {
 
     GetData().then(cars => {
-      // localStorage.setItem('myCar', JSON.stringify( cars));
       this.setState(() => { 
         return { carsSource: cars };
       });
@@ -175,6 +174,9 @@ class Home extends Component {
         console.log("w-s", $(window).scrollTop());
       }
     }); 
+
+  
+    setInterval(() => this.handelRefresh(),90000)
     
   }
 
@@ -192,13 +194,7 @@ class Home extends Component {
     // //  this.setState({paginationCount:this.state.paginationCount+1})
   };
 
-  // handelLanguage = () => {
-  //   console.log(this.props)
-  //   // const arabic = this.state.language;
-  //   // this.setState({ language: !arabic });
-  // this.props.dispatch({ type: 'ar' });
-  // };
-
+ 
   handelReset = () => {
     this.setState({
       cars: [],
@@ -348,12 +344,6 @@ class Home extends Component {
 
   render() {
     const { nameFilter } = this.state;
-    //  this.props.match.params.lang = this.props.language
-    // console.log("from homedddddd",this.props)
-    // console.log(this.props.match.params)
-    // // console.lo g(param)
-    // this.props.location.state = this.props.language
-
     return (
       <div>
         <div className="pageLayouts" style={ this.props.language === "en" ? null: {flexDirection: "row-reverse"} }  >
