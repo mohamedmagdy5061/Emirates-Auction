@@ -5,7 +5,6 @@ import { connect } from 'react-redux';
 class Faqs extends Component {
   componentWillReceiveProps(){
     console.log(this.props)
-  //  this.props.history.push(`/faqs/${this.props.language}`)
   }
   render() {
 
@@ -13,7 +12,7 @@ class Faqs extends Component {
       <div>
         <Navbar />
         <div className="container" style={{paddingTop: "95px" }}>
-            {this.props.language === "en" ? <div>It is FAQ Page</div> : <div  dir="rtl">عربي</div>} 
+            {this.props.language === "en" ? <div>It is FAQ Page</div> : <div  dir="rtl">اسئله شائعه</div>} 
         </div>
       </div>
     );
@@ -29,4 +28,3 @@ function mapStateToProps(state) {
 export default connect(mapStateToProps)(Faqs);
 
 
-// export default Faqs

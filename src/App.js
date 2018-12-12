@@ -1,16 +1,11 @@
 import React, { Component } from "react";
 import "./App.css";
-import { BrowserRouter, Route, Switch,Redirect  } from "react-router-dom";
+import { BrowserRouter, Route, Switch  } from "react-router-dom";
 import ContactUs from "./Routes/ContactUs";
 import Home from "./Routes/Home";
 import About from "./Routes/About";
 import FAQs from "./Routes/FAQs";
 import { connect } from 'react-redux';
-// import Navbar from "./Components/Navbar/Navbar";
-
-  
-
-
 
 class App extends Component {
   
@@ -41,5 +36,4 @@ function mapStateToProps(state) {
 }
 
 export default connect(mapStateToProps)(App)
-// export default App; 
 

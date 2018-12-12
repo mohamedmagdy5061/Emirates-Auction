@@ -217,7 +217,9 @@ class Home extends Component {
       },2000);
   };
 
-  handleShowCard = type => {
+  handleShowCard = (type) => {
+   
+
     this.setState({ show: type });
   };
 

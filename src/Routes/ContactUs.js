@@ -11,7 +11,7 @@ class ContactUs extends Component {
       <div>
         <Navbar />
         <div className="container" style={{paddingTop: "95px" }}>
-          {this.props.language === "en" ? <div>It is Contact Us Page</div> : <div  dir="rtl">عربي</div>} 
+          {this.props.language === "en" ? <div>It is Contact Us Page</div> : <div  dir="rtl">اتصل بنا</div>} 
         </div>
       </div>
     );
@@ -25,5 +25,3 @@ function mapStateToProps(state) {
 }
 
 export default connect(mapStateToProps)(ContactUs);
-
-// export default ContactUs

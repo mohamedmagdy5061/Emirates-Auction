@@ -1,6 +1,7 @@
 import React,{Component} from "react";
 import { NavLink } from "react-router-dom";
 import EALogo from "../../Assets/car-logo.png";
+import userImage from "../../Assets/mySon.jpeg";
 import "./Navbar.css";
 import { connect } from 'react-redux';
 
@@ -9,10 +10,7 @@ class Navbar extends Component {
 
   componentWillReceiveProps(){
     console.log(this.props)
-  //  this.props.history.push(`${this.props.lang}`)
-
       
-
 }
   render() {
     console.log(this.props)
@@ -68,11 +66,15 @@ class Navbar extends Component {
             {this.props.lang === "en" ? "العربيه" : "English"}
           </button>
           <button
-            style={{ border: "none", background: "none", cursor: "pointer" }}
+            style={{ border: "none", background: "none", cursor: "pointer",color:"#2765b1" }}
             onClick={this.props.clickRefresh}
           >
             <i className="fas fa-sync-alt" />
           </button>
+        </div>
+          <div style={{borderLeft:" 1px solid #d4d4d4"}}>
+          <span style={{padding:"0px 7px",color:"gray"}}>Mohamed Magdy</span>
+          <img className="avatar"  src={userImage} alt="userImage"/> 
         </div>
       </div>
     </nav>
