@@ -32,5 +32,5 @@ Builds the app for production to the build folder.
 It correctly bundles React in production mode and optimizes the build for the best performance.
 
 ### `Deployment`
-npm install -g serve
+npm install -g serve <br>
 serve -s build  
