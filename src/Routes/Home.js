@@ -158,25 +158,18 @@ class Home extends Component {
   componentDidMount() {
 
     GetData().then(cars => {
-        let newCars = this.state.cars
-        let newSouCar = this.state.carsSource
-      for(let i=0 ; i < 8  ; i++){
-        newCars.push(cars[i])
-    }
-
+    //     let newCars = this.state.cars
+    //     let newSouCar = this.state.carsSource
+    //   for(let i=0 ; i < 10  ; i++){
+    //     newCars.push(cars[i])
+    // }
       this.setState(() => { 
-        return { carsSource: cars, cars:newCars };
+        // return { carsSource: cars, cars:newCars };
+        return { carsSource: cars };
+
       });
-      // this.pushDataPagination();
-
-
-      console.log(newCars)
-      console.log(newSouCar)
-      console.log(this.state.carsSource)
-
+   
     });
-
-
 
     this.handelMinMaxRange();
 
@@ -187,48 +180,30 @@ class Home extends Component {
         // console.log("w-h", $(window).height());
         // console.log("d-h", $(document).height());
         // console.log("w-s", $(window).scrollTop());
-       
-        this.pushDataPagination();
+        // this.pushDataPagination();
       }
-    }); 
-
-  
+    });   
     setInterval(() => this.handelRefresh(),90000)
-
-    // this.pushDataPagination();
-     
   }
 
 
-   
-    
-    
-
-  pushDataPagination = () => {
-
-    let newCars = this.state.cars
-    let newSouCar = this.state.carsSource
- 
-
-    for(let i=0 ; i < 10  ; i++){
-      if(newCars!==[]){
-        newCars.push(newSouCar[i])
-      }
-
-      }
-
-      this.setState({cars:newCars})
-    if(newSouCar.length-1 > 20){
-      // console.log( newSouCar.length)
-         newSouCar.splice(0,10)
-         
-      }else{
-        // console.log( newSouCar.length-1)
-        newSouCar.splice(0)
-      }
-  };
-  
-  
+  // pushDataPagination = () => {
+  //   let newCars = this.state.cars
+  //   let newSouCar = this.state.carsSource
+  //   for(let i=0 ; i < 10  ; i++){
+  //     if(newCars!==[]){
+  //       newCars.push(newSouCar[i])
+  //     }
+  //   }
+  //     this.setState({cars:newCars})
+  //   if(newSouCar.length-1 > 20){
+  //     // console.log( newSouCar.length)
+  //        newSouCar.splice(0,10)    
+  //     }else{
+  //       // console.log( newSouCar.length-1)
+  //       newSouCar.splice(0)
+  //     }
+  // }; 
  
   handelReset = () => {
     this.setState({
