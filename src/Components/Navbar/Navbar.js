@@ -72,7 +72,7 @@ class Navbar extends Component {
             <i className="fas fa-sync-alt" />
           </button>
         </div>
-          <div style={{borderLeft:" 1px solid #d4d4d4"}}>
+          <div dir = {this.props.lang==="en"? null : "rtl"} style={this.props.lang==="en"? {borderLeft:" 1px solid #d4d4d4"}:{borderRight:" 1px solid #d4d4d4"}}>
           <span style={{padding:"0px 7px",color:"gray"}}>Mohamed Magdy</span>
           <img className="avatar"  src={userImage} alt="userImage"/> 
         </div>

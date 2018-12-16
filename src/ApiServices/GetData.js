@@ -9,6 +9,7 @@ export const GetData = ()=>{
       const responseAllCars = res.data.Cars;
       // eslint-disable-next-line no-useless-escape
        responseAllCars.map(res => res.image=res.image.replace(/w\_\[w\]\,h\_\[h\]/,"w_500,h_500"));
+    
       return responseAllCars;
    })
 

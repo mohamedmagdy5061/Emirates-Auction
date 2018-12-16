@@ -3,7 +3,7 @@ import "./TopFilter.css"
 
 let isActive = true
 const style={
-  color:"black"
+  // color:"black"
 }
 
  let isActives = (e)=>{

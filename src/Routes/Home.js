@@ -158,10 +158,25 @@ class Home extends Component {
   componentDidMount() {
 
     GetData().then(cars => {
+        let newCars = this.state.cars
+        let newSouCar = this.state.carsSource
+      for(let i=0 ; i < 8  ; i++){
+        newCars.push(cars[i])
+    }
+
       this.setState(() => { 
-        return { carsSource: cars };
+        return { carsSource: cars, cars:newCars };
       });
+      // this.pushDataPagination();
+
+
+      console.log(newCars)
+      console.log(newSouCar)
+      console.log(this.state.carsSource)
+
     });
+
+
 
     this.handelMinMaxRange();
 
@@ -169,31 +184,51 @@ class Home extends Component {
       let scrollHeight = $(document).height();
       let scrollPosition = $(window).height() + $(window).scrollTop();
       if ((scrollHeight - scrollPosition) / scrollHeight === 0) {
-        console.log("w-h", $(window).height());
-        console.log("d-h", $(document).height());
-        console.log("w-s", $(window).scrollTop());
+        // console.log("w-h", $(window).height());
+        // console.log("d-h", $(document).height());
+        // console.log("w-s", $(window).scrollTop());
+       
+        this.pushDataPagination();
       }
     }); 
 
   
     setInterval(() => this.handelRefresh(),90000)
-    
+
+    // this.pushDataPagination();
+     
   }
 
-  pushDataPagination = () => {
-    // // this.state.paginationView = this.state.carsSource.map(((car , index )=>{
-    // let item = Math.floor(this.state.carsSource.length / 8);
-    // if (this.state.paginationCount <= item) {
-    //   let data = 8 * this.state.paginationCount;
-    //   this.state.paginationView = this.state.carsSource.map((car, index) => {
-    //     console.log(car[index <= data]);
-    //   });
-    //   // this.setState({paginationView:this.state.paginationView})
-    // }
-    // // }))
-    // //  this.setState({paginationCount:this.state.paginationCount+1})
-  };
 
+   
+    
+    
+
+  pushDataPagination = () => {
+
+    let newCars = this.state.cars
+    let newSouCar = this.state.carsSource
+ 
+
+    for(let i=0 ; i < 10  ; i++){
+      if(newCars!==[]){
+        newCars.push(newSouCar[i])
+      }
+
+      }
+
+      this.setState({cars:newCars})
+    if(newSouCar.length-1 > 20){
+      // console.log( newSouCar.length)
+         newSouCar.splice(0,10)
+         
+      }else{
+        // console.log( newSouCar.length-1)
+        newSouCar.splice(0)
+      }
+  };
+  
+  
  
   handelReset = () => {
     this.setState({
@@ -268,15 +303,8 @@ class Home extends Component {
   };
 
   filterByName = name => {
-    return (this.state.cars != ""
-      ? this.state.cars
-      : this.state.carsSource
-    ).filter(
-      car =>
-        `${car.modelEn} ${car.makeEn}`
-          .toLowerCase()
-          .indexOf(name.toLowerCase()) > -1
-    );
+    return (this.state.cars != "" ? this.state.cars : this.state.carsSource)
+    .filter(car =>`${car.modelEn} ${car.makeEn}`.toLowerCase().indexOf(name.toLowerCase()) > -1);
   };
 
   handleFilterByName = event => {
