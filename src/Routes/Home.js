@@ -378,14 +378,14 @@ class Home extends Component {
               <i className="fas fa-heartbeat" />
             </div>
           </div>
-          <div className="main"  style={this.props.language === "en" ? {marginLeft:"71px"}:{marginRight:"71px"}} >
+          <div className="main"  >
             <div className="nav-bars" style ={{position:"fixed",width:"96vw",zIndex:1000}} >
               <Navbar
                 clickRefresh={this.handelRefresh}
               />
             </div>
             <div className="mainDisplay" style={ this.props.language === "en" ? {marginTop:"5%"}: {flexDirection: "row-reverse",marginTop:"5%"} } >
-              <div className="filterSide" style={this.props.language === "en" ?{position:"fixed",height:"100vh", marginLeft: "2%"}:{position:"fixed",height:"100vh",marginLeft: "-2%"}}>
+              <div  className={this.props.language === "en" ?"filterSide":"filterSide-Ar"}>
                 <ConditionFilter
                   clickedReset={this.handelReset}
                   filterData={this.state.carsSource}
@@ -438,7 +438,7 @@ class Home extends Component {
                 </div>
               </div>
 
-              <div className="showData" style={this.props.language === "en" ?{marginLeft: "20%"}:{marginRight :"20%"}}>
+              <div className={this.props.language === "en" ?"showData":"showData-Ar"}>
                 <div className="topFilter">
                   <TopFilter
                     clickedGrid={this.handleShowCard.bind(null, true)}

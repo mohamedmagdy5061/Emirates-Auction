@@ -16,8 +16,8 @@ const style={
 }
 
 const TopFilter = props => (
-  <div>
-    <nav className="navbar navbar-light">
+  <div dir={props.lang === "en" ?"ltr":"rtl"}>
+    <nav className="navFilter" style={{display:"flex",flexWrap:"wrap",justifyContent: "space-between"}}>
       <form className="form-inline">
         <input
           className="form-control mr-sm-2"

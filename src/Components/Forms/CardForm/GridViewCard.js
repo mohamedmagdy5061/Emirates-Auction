@@ -9,7 +9,7 @@ const cardFormStyle = {
 
 const GridViewCard = props => {
   return (
-    <div className="col-lg-3 col-sm-8 portfolio-item  animation " style={cardFormStyle}>
+    <div className="col-xs-12 col-sm-12 col-md-12 col-lg-4 col-xl-3  portfolio-item  animation " style={cardFormStyle}>
       <div
         className="card h-100"
         style={{ boxShadow: "0 5px 7px 0 rgba(0,0,0,.08)"}}

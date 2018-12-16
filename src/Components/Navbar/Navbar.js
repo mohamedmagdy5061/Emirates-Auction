@@ -17,7 +17,7 @@ class Navbar extends Component {
    
   return (
     <div>
-      <nav className="navbar navbar-expand-lg navbar-light bg-light" style={this.props.lang==="en"? null:{flexDirection:"row-reverse"}}>
+      <nav className={this.props.lang==="en"? "navbar navBars navbar-expand-lg navbar-light bg-light":"navbar navBars-Ar navbar-expand-lg navbar-light bg-light"}>
       <a className="navbar-brand" href="/"><img src={EALogo} width="100" style={{ color: "black" }} alt="logo" /></a>
       <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span className="navbar-toggler-icon"></span>

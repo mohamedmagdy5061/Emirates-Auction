@@ -21,14 +21,61 @@
 .showData {
   width: 100%;
   max-width: 70%;
+  
+}
+
+.showData-AR{
+  width: 100%;
+  max-width: 70%;
+  margin-right: 4%;
 }
 
 .nav-bars {
   background-color: #fff;
   padding: 0px;
   margin-bottom: 10px;
+  position:"fixed";
+  width:"96vw";
+  z-index:1000
 }
 
 .filterSide {
   width: 15%;
+  position:"fixed" !important;
+  height:"100vh";
+  margin-left: "2%"
 }
+.filterSide-Ar{
+  width: 15%;
+  position:"fixed" !important;
+  height:"100vh";
+  margin-right: 7%;
+}
+
+
+
+
+
+@media screen and (max-width: 768px) {
+  .siedMenu { display: none }
+  .showData {max-width: 55%;margin-left: 40% !important}
+  .showData-Ar {max-width: 55%;margin-right: 40% !important;}
+  .siedMenu{display: none}
+  .main{margin-left: 0px !important}
+  .filterSide{margin-left: 7% !important ;width: 25% !important; position: fixed;}
+  .nav-bars{width:"100vw"}
+  .mainDisplay{margin-top: 80px ! important}
+  .filterSide-Ar{   width: 25% !important;position: fixed;margin-left: -7% !important;}
+}
+
+  @media screen and (min-width: 769px) {
+    .showData {max-width: 70%;margin-left: 25% !important}
+    .showData-Ar {max-width: 70%;margin-right: 25% !important}
+    .main{margin-left: 0px !important}
+    .filterSide{margin-left: 6% !important;position: fixed;}
+    .nav-bars{width:"100vw"}
+    .mainDisplay{margin-top: 80px ! important}
+    .filterSide-Ar{margin-left: -7% !important;position: fixed;}
+    
+
+  }

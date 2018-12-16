@@ -11,3 +11,6 @@
     border-bottom: 1px solid #3665ac;
     outline: none;
 }
+/* @media screen and (min-width: 300px) {
+    .navFilter { margin-top:50px }
+} */
